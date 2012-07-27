@@ -1,70 +1,45 @@
 \name{valueSetsPlots}
 \alias{valueSetsPlots}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
+\title{To run valueSets analysis and create plots for all of the segments.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Creates multiple plots per page as a first run through. 
+User can do it using the individual functions if they want more control.
 }
 \usage{
 valueSetsPlots(dFraw, numQs = 21, centering = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{dFraw}{
-%%     ~~Describe \code{dFraw} here~~
+  \item{dFraw}{A dataframe containing responses to values questions. 
+  A first column specifying a group identifier followed by either 21 or 57 columns with the answers to questions.
+  1 row per respondent.
 }
-  \item{numQs}{
-%%     ~~Describe \code{numQs} here~~
+  \item{numQs}{The number of questions asked in the survey, current options 57 or 21.
 }
-  \item{centering}{
-%%     ~~Describe \code{centering} here~~
+  \item{centering}{Whether or not to centre the value sets. Set to TRUE as default. 
 }
-  \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+  \item{\dots}{additional parameters to pass to \code{rosePlot()}
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+returns nothing.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+andy south
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (dFraw, numQs = 21, centering = TRUE, ...) 
-{
-    dF <- valueSets(dFraw = dFraw, numQs = numQs, centering = centering)
-    rosePlotMulti(dF, names = "setName", valuesColumns = c(3:length(dF)), 
-        ...)
-    invisible(dF)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ aplot }
+
