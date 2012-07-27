@@ -3,12 +3,11 @@
 \alias{rschwartzvalues}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+To conduct and visualise Schwartz values analysis.  
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+Functions to take repsonses to values survey questions, aggregate these into values sets,
+and display the results using rose/circumplex/coxcomb plots.
 }
 \details{
 \tabular{ll}{
@@ -16,26 +15,28 @@ Package: \tab rschwartzvalues\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2012-07-25\cr
-License: \tab What license is it under?\cr
+License: \tab GNU GPL v2\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+1. \code{valueSets()} to estimate Value Sets from responses to questions.
+2. \code{rosePlot()} to plot Value Sets results.
+3. \code{valueSetsPlots()} to do 1 & 2 together 
 }
 \author{
-Who wrote it
+andy south
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: southandy@gmail.com
 }
 \references{
-~~ Literature or other references for background information ~~
+http://mypersonality.org/wiki/doku.php?id=schwartz_s_values_survey
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
 \keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+
 }
 \examples{
-~~ simple examples of the most important functions ~~
+labels <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence','Conformity & Tradition','Security','Power','Achievement'))
+scores <- c(1,10,2,3,4,5,6,7,8)
+scores2 <- c(2,9,3,2,4,10,6,7,4)
+dF <- data.frame(labels=labels, scores=scores, scores2=scores2)
+rosePlotMulti(dF, names='labels', values=c(2,3))
 }

@@ -1,11 +1,10 @@
 \name{dFlookup57}
 \alias{dFlookup57}
 \docType{data}
-\title{
-%%   ~~ data name/kind ... ~~
+\title{ A lookup table specifying which of 57 values questions contribute to each of 9 Schwartz value sets. 
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+This lookup table allows other functions to calculate Schwartz value sets from the repsonses to the 57 questions of the Schwartz values survey.
 }
 \usage{data(dFlookup57)}
 \format{
@@ -18,17 +17,13 @@
     \item{\code{svs57setName}}{a factor with levels \code{ } \code{Achievement} \code{Benevolence} \code{Conformity} \code{Hedonism} \code{Power} \code{Security} \code{Self-Direction} \code{Stimulation} \code{Tradition} \code{Universalism}}
   }
 }
-\details{
-%%  ~~ If necessary, more details than the __description__ above ~~
-}
+
 \source{
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
+http://mypersonality.org/wiki/doku.php?id=schwartz_s_values_survey
 }
-\references{
-%%  ~~ possibly secondary sources and usages ~~
-}
+
 \examples{
 data(dFlookup57)
-## maybe str(dFlookup57) ; plot(dFlookup57) ...
+dFlookup57
 }
 \keyword{datasets}

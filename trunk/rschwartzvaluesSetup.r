@@ -1,5 +1,8 @@
 #rschwartzvaluesSetup.r
 
+#!!!!!BEWARE!!!!!!
+#take care running this file because it could overwrite stuff
+
 #andy south 25/7/2012
 
 #creating the package
@@ -9,15 +12,19 @@ setwd('C:\\rProjects\\PircPlotJune2012\\')
 
 dFlookup21 <- read.csv('lookupTables//21QuestionsLookup.csv')
 dFlookup57 <- read.csv('lookupTables//57QuestionsLookup.csv')
+#this is how to save to package later
+#save(dFlookup57, file="rschwartzvaluesWorkingCopy//rschwartzvalues//data//dFlookup57.rda")
 
 options(device="windows")
 
+#setting wd to initialSource
 setwd('C:\\rProjects\\PircPlotJune2012\\rschwartzvaluesWorkingCopy\\initialSource\\')
 
 #!put all the sourcefiles in here
 sourcefiles <- c('rosePlot','rosePlotAddComparison','rosePlotMulti','valueSets','valueSetsPlots','arctext2')
 
 #shell('dir')
+#load each sourcefile into R
 for( i in 1 : length(sourcefiles)) source(paste(sourcefiles[i],".r",sep=""))
 
 #adding the datafiles on
@@ -25,7 +32,11 @@ components <- c('dFlookup21','dFlookup57',sourcefiles)
 
 setwd('C:\\rProjects\\PircPlotJune2012\\rschwartzvaluesWorkingCopy\\')
 #this creates the package folder and all the subfolders
-package.skeleton(list=components
-                ,name="rschwartzvalues")
+#!BEWARE this could overwrite stuff
+#package.skeleton(list=components, name="rschwartzvalues")
+
+#use prompt() to create man pages for individual files
 
 
+#compiling the package from DOS
+#R CMD build rschwartzvalues

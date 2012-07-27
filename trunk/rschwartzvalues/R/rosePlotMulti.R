@@ -6,7 +6,7 @@ function( dF  #dataFrame
                            , ... #additional parameters to pass to rosePlot()   
                            )
 {
-  oldpar <-par() #save previous graphics settings
+  oldPar <-par() #save previous graphics settings
   
   for( plotNum in 1:length(valuesColumns) )
   {
