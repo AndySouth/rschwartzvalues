@@ -1,9 +1,9 @@
 Package: rschwartzvalues
 Type: Package
-Title: What the package does (short line)
+Title: To conduct and visualise Schwartz values analyses.
 Version: 1.0
 Date: 2012-07-25
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: andy south
+Maintainer: andy south <southandy@gmail.com>
+Description: Functions to take repsonses to values survey questions, aggregate these into values sets, and display the results using rose,circumplex,coxcomb plots.
+License: GPL (>= 2)
