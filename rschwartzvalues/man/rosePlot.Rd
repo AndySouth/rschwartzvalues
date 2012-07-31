@@ -8,7 +8,9 @@ The number of petals is determined by the number of values, and the diameter of 
 The names passed are displayed around the circumference of the plot. 
 }
 \usage{
-rosePlot(dF, names, values, maxValue = NA, textSize = 1, textCol = "black", ringWidth = 1, ringCol = "grey", bgCol = "white", gridInterval = 1, gridCol = "white", gridThick = 1, title = NA, palette = "rainbow")
+rosePlot(dF, names, values, maxValue = NA, textSize = 1, textCol = "black"
+        , ringWidth = 1, ringCol = "grey", bgCol = "white", gridInterval = 1
+        , gridCol = "white", gridThick = 1, title = NA, palette = "rainbow")
 }
 
 \arguments{
@@ -52,10 +54,8 @@ andy south
 }
 
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-labels <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence','Conformity & Tradition','Security','Power','Achievement'))
+labels <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence'
+            ,'Conformity & Tradition','Security','Power','Achievement'))
 scores <- c(1,10,2,3,4,5,6,7,8)
 dF <- data.frame(labels=labels, scores=scores)
 rosePlot(dF, names='labels', values='scores' )

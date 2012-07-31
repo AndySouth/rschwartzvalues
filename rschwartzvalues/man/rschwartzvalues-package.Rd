@@ -34,7 +34,8 @@ http://mypersonality.org/wiki/doku.php?id=schwartz_s_values_survey
 
 }
 \examples{
-labels <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence','Conformity & Tradition','Security','Power','Achievement'))
+labels <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence'
+            ,'Conformity & Tradition','Security','Power','Achievement'))
 scores <- c(1,10,2,3,4,5,6,7,8)
 scores2 <- c(2,9,3,2,4,10,6,7,4)
 dF <- data.frame(labels=labels, scores=scores, scores2=scores2)

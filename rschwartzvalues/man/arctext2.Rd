@@ -6,7 +6,8 @@
 Enables text to be oriented clockwise or anticlockwise. Likely that this will be superceded by an update from the plotrix package author.
 }
 \usage{
-arctext2(x, center = c(0, 0), radius = 1, start = NA, middle = pi/2, end = NA, stretch = 1, orient = "clock", cex = NA, ...)
+arctext2(x, center = c(0, 0), radius = 1, start = NA, middle = pi/2, end = NA
+        , stretch = 1, orient = "clock", cex = NA, ...)
 }
 
 \arguments{
