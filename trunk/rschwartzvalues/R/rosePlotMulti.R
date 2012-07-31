@@ -7,6 +7,9 @@ function( dF  #dataFrame
                            )
 {
   oldPar <-par() #save previous graphics settings
+
+  #RStudioGD doesn't allow multiple windows so changing it
+  if ( options('device')=="RStudioGD" ) options(device="windows")  
   
   for( plotNum in 1:length(valuesColumns) )
   {
