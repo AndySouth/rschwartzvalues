@@ -1,0 +1,51 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+\documentclass[a4paper]{article}
+\title{rschwartzvalues vignette}
+\author{Andy South\footnote{{\tt southandy at gmail.com}}}
+
+\SweaveOpts{echo=TRUE,print=FALSE, width=7, height=3.7, eps=FALSE} %default width and height for figures
+\usepackage{Sweave}
+\usepackage{a4wide}
+%\usepackage{a4}
+%\usepackage{graphicx}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\begin{document}
+\maketitle
+
+%text that is put directly into the document
+\large{rschwartzvalues is a package for conducting Schwartz values analyses.
+This includes deriving 'Value sets' from responses to Schwartz values survey questions
+and creating plots (sometimes termed rose, coxcomb or circumplex).}\newline
+
+This vignette shows a few examples of the main rschwartzvalues functions to get you
+started. To access the full help system, type ?rschwartzvalues in the R console.
+
+
+\vspace{1 cm}
+
+\tableofcontents
+\vspace{0.5 cm}
+\section{Introduction}
+%\vspace{1 cm}
+
+
+Package {\tt rschwartzvalues} is loaded by
+<<echo=TRUE,print=FALSE>>=
+library(rschwartzvalues)
+@
+
+\vspace{0.5 cm}
+
+
+%this to ensure R code wraps onto next line
+<<echo=FALSE>>=
+options(width=70)
+@
+
+
+
+
+
+
+
+\end{document}

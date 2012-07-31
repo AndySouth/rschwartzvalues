@@ -33,7 +33,7 @@ function( dFraw  #dataFrame or could be a text file
   
   #first try calculating the means for each segment for each question
   #this works
-  dFrawMeans <- aggregate(dFraw[2:numQs+1],by=dFraw[1], mean)
+  dFrawMeans <- aggregate(dFraw[2:(numQs+1)],by=dFraw[1], mean)
   #set row names to the segment names
   row.names(dFrawMeans) <- dFrawMeans[,1]
   #remove the segment names column
