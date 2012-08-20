@@ -9,13 +9,39 @@
 %\usepackage{a4}
 %\usepackage{graphicx}
 \usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+
+%this to ensure R code wraps onto next line
+<<echo=FALSE>>=
+options(width=70)
+@
+%loading package for first fig
+<<echo=FALSE,print=FALSE>>= 
+library(rschwartzvalues)
+@
+
+%this code used in setting up all figures later
+<<plotSetup,echo=FALSE>>=
+par(mai=c(0.2,0,0.2,0)) #(b, l, t, r)
+@
+
+
 \begin{document}
 \maketitle
 
 %text that is put directly into the document
 \large{rschwartzvalues is a package for conducting Schwartz values analyses.
 This includes deriving 'Value sets' from responses to Schwartz values survey questions
-and creating plots (sometimes termed rose, coxcomb or circumplex).}\newline
+and creating plots like the one shown below (sometimes termed rose, coxcomb or circumplex).}\newline
+
+\begin{center}
+<<fig1,fig=TRUE,echo=FALSE,results=hide>>= 
+<<plotSetup>>
+iNames <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence','Conformity & Tradition','Security','Power','Achievement'))
+iValues <- c(1,10,2,3,4,5,6,7,8)
+dF <- data.frame(names=iNames, values=iValues)
+rosePlot(dF, names='names', values='values', textSize=0.7) 
+@
+\end{center}
 
 This vignette shows a few examples of the main rschwartzvalues functions to get you
 started. To access the full help system, type ?rschwartzvalues in the R console.
@@ -37,11 +63,25 @@ library(rschwartzvalues)
 \vspace{0.5 cm}
 
 
-%this to ensure R code wraps onto next line
-<<echo=FALSE>>=
-options(width=70)
-@
 
+
+
+
+\begin{center}
+<<fig1,fig=TRUE,echo=TRUE,results=hide>>= 
+<<plotSetup>>
+iNames <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence','Conformity & Tradition','Security','Power','Achievement'))
+iValues <- c(1,10,2,3,4,5,6,7,8)
+iValues2 <- c(2,9,3,2,4,10,6,7,4)
+iValues3 <- c(9,9,9,9,9,9,9,9,9)
+iColours <- rainbow(length(iValues))
+
+dF <- data.frame(names=iNames, values=iValues, values2=iValues2, values3=iValues3)
+
+rosePlot(dF, names='names', values='values', textSize=0.7) 
+
+@
+\end{center}
 
 
 

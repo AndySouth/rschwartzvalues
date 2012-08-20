@@ -1,5 +1,3 @@
-#!need to modify this to cope with dataframes without the first column
-#!and make sure it copes with single segment
 
 valueSets <-
 function( dFraw  #dataFrame or could be a text file 
@@ -8,10 +6,9 @@ function( dFraw  #dataFrame or could be a text file
                        ) 
 {
   
-  #first read in the lookup table
-  #later will be stored in package
+  #first get the lookup table
+  #later offer the option to submit own lookup table
   #dFlookup21 <- read.csv('lookupTables//21QuestionsLookup.csv')
-  #dFlookup57 <- read.csv('lookupTables//57QuestionsLookup.csv')
   if (numQs == 21) {
     data(dFlookup21)
     dFlookup <- dFlookup21
@@ -26,13 +23,21 @@ function( dFraw  #dataFrame or could be a text file
   
   #test whether the number of questions in the lookup table and the raw data is the same 
   
+  #if the data don't have an identifier column add one on so that later bits work
+  if (length(dFraw)==numQs) 
+  {
+    message("adding an identifier column")
+    dFtmp <- cbind('ID',dFraw)
+    dFraw <- dFtmp    
+  } else if(length(dFraw)!=(1+numQs))
+          warning("your input file needs to have one column per question and an optional identifier column\n numColumns=",length(dFraw)," numQs=",numQs)
+    
   #assume that the input data has 1 identifier column followed by 21 columns with answer to each question
   #respondents in rows
   #column1 has an identifier to subset data by
   #dFraw[index+1]
   
-  #first try calculating the means for each segment for each question
-  #this works
+  #first calc the means for each segment for each question
   dFrawMeans <- aggregate(dFraw[2:(numQs+1)],by=dFraw[1], mean)
   #set row names to the segment names
   row.names(dFrawMeans) <- dFrawMeans[,1]
@@ -80,11 +85,21 @@ function( dFraw  #dataFrame or could be a text file
     #find which wuestions contribute to this set
     qNums <- which( dFlookup$setID==setID )
     #calculate the means for all segments
-    results <- sapply( dFt[qNums,],FUN=mean )
+    #!!!seems to be a problem here if just one segment
+    #it returns 3 elements rather than a single mean
+    #actually issue is with dFt and partic dFt[qNums,]
+    #seems that when dFt just has one column, subsetting it results in data without names
+    #need to try to keep it as a dataframe, AHA! drop=FALSE solves that
+    results <- sapply( dFt[qNums, drop = FALSE,], FUN=mean )        
+    #results <- sapply( dFt[qNums,],FUN=mean )
+    
+    #cat(dFt[qNums,])
+    
     #if centreing subtract from the totalMean
     if(centering) results <- results + meanDif
     #put into the output dataFrame
     dFout[setNum,names(results)] <- results
+    #dFout[setNum,names(dFt)] <- results    
   }
   
   return(dFout)  

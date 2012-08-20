@@ -16,6 +16,8 @@ valueSets(dFraw, numQs = 21, centering = TRUE)
 \arguments{
   \item{dFraw}{A dataframe containing responses to values questions. 
   A first column specifying a group identifier followed by either 21 or 57 columns with the answers to questions.
+  Columns must be in the correct order.
+  (Will also work for a single group if there is no identifier column).
   1 row per respondent.
 }
   \item{numQs}{The number of questions asked in the survey, current options 57 or 21.
