@@ -18,6 +18,18 @@ function( dF  #dataFrame
   #set maxValue from data if not specified
   if (is.na(maxValue)) maxValue <- max(dF[[values]],na.rm=TRUE)
   
+  if (!(maxValue>0)) {
+    warning("In rosePlot(), the maximum value for the plot needs to be greater than 0, yours is ",maxValue)
+    return()
+  }
+ 
+  #just checking minValue for warning
+  #plots work with -ve vals but just don't show that petal
+  minValue <- min(dF[[values]],na.rm=TRUE) 
+  if (minValue<0) {
+    warning("In rosePlot(), your data has negative values these will not appear in plots, your min value is ",minValue)
+  }  
+  
   fMaxRadius <- maxValue #can also have option to set from the max in the data
   #fMaxWindow <- fMaxRadius + 1 #this +1 is lazy
   fMaxWindow <- fMaxRadius + ringWidth*fMaxRadius/10 #10% boundary to include the ring
