@@ -63,7 +63,20 @@ library(rschwartzvalues)
 \vspace{0.5 cm}
 
 
+The code below shows how the pacakage takes responses to survey questions, 
+aggregates these into 'value sets' and then displays the results.
 
+\begin{center}
+<<fig1,fig=TRUE,echo=TRUE,results=tex>>= 
+<<plotSetup>>
+#first get the test data provided in the package
+data(dFtestData21)
+dFtestData21
+#valueSetsPlots(dFtestData21,numQs=21)
+#dF <- valueSets(dFtestData21,numQs=21)
+#rosePlot(dF, names='names', values='values')
+@
+\end{center}
 
 
 
