@@ -63,20 +63,44 @@ library(rschwartzvalues)
 \vspace{0.5 cm}
 
 
-The code below shows how the pacakage takes responses to survey questions, 
-aggregates these into 'value sets' and then displays the results.
+To analyse question responses you need to read your data in to a dataframe with
+columns specifying the question responses and a row for each individual. 
+Optionally you can provide a first column specifying groups or segments that
+individuals belong to.
+There is a dataframe included in the package (dFtestData21) showing how the data should
+be formatted. The code below shows how the test data can be accessed and displays
+the first 14 columns using the xtable package.
 
 \begin{center}
-<<fig1,fig=TRUE,echo=TRUE,results=tex>>= 
-<<plotSetup>>
-#first get the test data provided in the package
+<<fig=FALSE,echo=TRUE,results=tex>>= 
+#to access the test data provided in the package
 data(dFtestData21)
-dFtestData21
-#valueSetsPlots(dFtestData21,numQs=21)
-#dF <- valueSets(dFtestData21,numQs=21)
-#rosePlot(dF, names='names', values='values')
+library(xtable)
+print(xtable(dFtestData21[1:14]),include.rownames=FALSE)
 @
 \end{center}
+
+The code below shows how you can use valueSets() to aggregate the raw responses
+into 'value sets' for each group producing results as a dataframe. 
+Then you can use rosePlot()
+to plot the value sets for one of the groups.
+
+\begin{center}
+<<fig2,fig=TRUE,echo=TRUE>>= 
+<<plotSetup>>
+#to access the test data provided in the package
+data(dFtestData21)
+#to calculate value sets
+dF <- valueSets(dFtestData21,numQs=21)
+print(dF,row.names=FALSE)
+#to produce a plot for one of the groups
+rosePlot(dF, names='setName', values='group5',textSize=0.7)
+@
+\end{center}
+
+
+The code below shows how the package takes responses to survey questions, 
+aggregates these into 'value sets' and then displays the results.
 
 
 
