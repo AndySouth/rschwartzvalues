@@ -1,0 +1,4 @@
+%\VignetteIndexEntry{One page intro}
+\documentclass{article}
+\begin{document}
+\end{document}
