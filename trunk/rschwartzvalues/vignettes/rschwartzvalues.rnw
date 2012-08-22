@@ -3,6 +3,8 @@
 \title{rschwartzvalues vignette}
 \author{Andy South\footnote{{\tt southandy at gmail.com}}}
 
+%\VignetteIndexEntry{rschwartzvalues vignette : examples to get started}
+
 \SweaveOpts{echo=TRUE,print=FALSE, width=7, height=3.7, eps=FALSE} %default width and height for figures
 \usepackage{Sweave}
 \usepackage{a4wide}
@@ -20,7 +22,7 @@ library(rschwartzvalues)
 @
 
 %this code used in setting up all figures later
-<<plotSetup,echo=FALSE>>=
+<<plotSetup,echo=FALSE,print=FALSE>>=
 par(mai=c(0.2,0,0.2,0)) #(b, l, t, r)
 @
 
@@ -43,33 +45,36 @@ rosePlot(dF, names='names', values='values', textSize=0.7)
 @
 \end{center}
 
-This vignette shows a few examples of the main rschwartzvalues functions to get you
-started. To access the full help system, type ?rschwartzvalues in the R console.
+This vignette shows a few examples of the main {\tt rschwartzvalues} functions to get you
+started. To access the full help system, type {\tt ?rschwartzvalues} in the R console.
 
-
-\vspace{1 cm}
 
 \tableofcontents
 \vspace{0.5 cm}
-\section{Introduction}
+
+\section{Loading rschwartzvalues}
 %\vspace{1 cm}
-
-
-Package {\tt rschwartzvalues} is loaded by
+First save the package file {\tt rschwartzvalues\_1.0.zip} locally, then type the 
+following command in to the R console, providing the path to the file.
+\newline
+{\tt install.packages("rschwartzvalues\_1.0.zip") }.
+You only need to do this once.
+In each R session load {\tt rschwartzvalues} by typing the following.
 <<echo=TRUE,print=FALSE>>=
 library(rschwartzvalues)
 @
 
-\vspace{0.5 cm}
+%\vspace{0.5 cm}
 
+\section{Getting your data in}
 
 To analyse question responses you need to read your data in to a dataframe with
 columns specifying the question responses and a row for each individual. 
 Optionally you can provide a first column specifying groups or segments that
 individuals belong to.
-There is a dataframe included in the package (dFtestData21) showing how the data should
+There is a dataframe included in the package ({\tt dFtestData21}) showing how the data should
 be formatted. The code below shows how the test data can be accessed and displays
-the first 14 columns using the xtable package.
+the first 14 columns using the {\tt xtable} package.
 
 \begin{center}
 <<fig=FALSE,echo=TRUE,results=tex>>= 
@@ -80,9 +85,12 @@ print(xtable(dFtestData21[1:14]),include.rownames=FALSE)
 @
 \end{center}
 
-The code below shows how you can use valueSets() to aggregate the raw responses
+
+\section{Using valueSets() and rosePlot()}
+
+The code below shows how you can use {\tt valueSets()} to aggregate the raw responses
 into 'value sets' for each group producing results as a dataframe. 
-Then you can use rosePlot()
+Then you can use {\tt rosePlot()}
 to plot the value sets for one of the groups.
 
 \begin{center}
@@ -94,34 +102,119 @@ data(dFtestData21)
 dF <- valueSets(dFtestData21,numQs=21)
 print(dF,row.names=FALSE)
 #to produce a plot for one of the groups
-rosePlot(dF, names='setName', values='group5',textSize=0.7)
+rosePlot(dF, names='setName', values='group6', textSize=0.7)
 @
 \end{center}
 
 
-The code below shows how the package takes responses to survey questions, 
-aggregates these into 'value sets' and then displays the results.
+By default {\tt valueSets()} centres the values by calculating the difference from
+the mean response. To turn centering off set 
+{\tt centering=FALSE}.
+The code below shows how this produces different results.
+\begin{center}
+<<fig=FALSE,echo=TRUE>>= 
+#to access the test data provided in the package
+data(dFtestData21)
+#to calculate value sets
+dF <- valueSets(dFtestData21,centering=FALSE,numQs=21)
+print(dF,row.names=FALSE)
+@
+\end{center}
+
+{\tt rosePlot()} by default sets the outer circumference of the circle to the 
+maximum value from your data. You can set the value for the outer edge using
+the {\tt maxValue} argument as shown below.  
+\begin{center}
+<<fig3,fig=TRUE,echo=TRUE>>= 
+<<plotSetup>>
+rosePlot(dF, names='setName', values='group6', textSize=0.7
+        , maxValue = 10 )
+@
+\end{center}
 
 
+\section{Using valueSetsPlots() to produce quick plots for all groups in a file}
+To do a quick analysis of all the groups in your file producing one plot for 
+each group type :
+{\tt valueSetsPlots(dFtestData21,numQs=21)}
+
+
+\section{Modifying plot appearance}
+
+A series of commands showing how the appearance of plots can be modified.
+\begin{center}
+<<figAppearance1,fig=TRUE,echo=TRUE,results=hide>>= 
+<<plotSetup>>
+rosePlot(dF, names='setName', values='group6', textSize=0.7
+        , gridCol='grey', bgCol='grey', ringCol='red'
+        , title="gridCol='grey',bgCol='grey',ringCol='red'")
+@
+\end{center}
 
 \begin{center}
-<<fig1,fig=TRUE,echo=TRUE,results=hide>>= 
+<<figAppearance2,fig=TRUE,echo=TRUE,results=hide>>= 
 <<plotSetup>>
-iNames <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence','Conformity & Tradition','Security','Power','Achievement'))
-iValues <- c(1,10,2,3,4,5,6,7,8)
-iValues2 <- c(2,9,3,2,4,10,6,7,4)
-iValues3 <- c(9,9,9,9,9,9,9,9,9)
-iColours <- rainbow(length(iValues))
+rosePlot(dF, names='setName', values='group6', textSize=0.7
+        , gridThick=0.2
+        , title='thinner gridlines' )
+@
+\end{center}
 
-dF <- data.frame(names=iNames, values=iValues, values2=iValues2, values3=iValues3)
+\begin{center}
+<<figAppearance3,fig=TRUE,echo=TRUE,results=hide>>= 
+<<plotSetup>>
+rosePlot(dF, names='setName', values='group6', textSize=0.7
+        , ringCol='purple', textCol='white' )
+@
+\end{center}
 
-rosePlot(dF, names='names', values='values', textSize=0.7) 
+\begin{center}
+<<figAppearance4,fig=TRUE,echo=TRUE,results=hide>>= 
+<<plotSetup>>
+rosePlot(dF, names='setName', values='group6', textSize=0.7
+        , ringWidth=0.4, title="reduced ring width")
+@
+\end{center}
 
+\begin{center}
+<<figAppearance5,fig=TRUE,echo=TRUE,results=hide>>= 
+<<plotSetup>>
+rosePlot(dF, names='setName', values='group6', textSize=0.7
+        , palette='grey', title="palette='grey'")
+@
+\end{center}
+
+\begin{center}
+<<figAppearance6,fig=TRUE,echo=TRUE,results=hide>>= 
+<<plotSetup>>
+rosePlot(dF, names='setName', values='group6', textSize=0.7
+        , gridInterval=2, title="increased grid interval" )
 @
 \end{center}
 
 
+\section{Using rosePlot() on other data}
 
+You can also use {\tt rosePlot()} to create a plot from any combination of text labels
+and values passed as a dataframe. The code below shows how you can create a 
+dataframe containing labels and values and pass this to {\tt rosePlot()}.
+
+\begin{center}
+<<figRosePlot,fig=TRUE,echo=TRUE,results=hide>>= 
+<<plotSetup>>
+iNames <- (c('Love','Hate','Indifference'))
+iValues <- c(6,4,2)
+dF <- data.frame(names=iNames, values=iValues)
+rosePlot(dF, names='names', values='values') 
+@
+\end{center}
+
+\section{Further information}
+For more details about Schwartz values analysis see :
+\newline
+{\tt http://mypersonality.org/wiki/doku.php?id=schwartz\_s\_values\_survey} \newline
+If you have any questions or would like to contribute, please contact the author
+at southandy@gmail.com. 
 
 
 
