@@ -14,7 +14,7 @@ and display the results using rose/circumplex/coxcomb plots.
 Package: \tab rschwartzvalues\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
-Date: \tab 2012-07-25\cr
+Date: \tab 2012-08-22\cr
 License: \tab GPL (>= 2)\cr
 }
 1. \code{valueSets()} to estimate Value Sets from responses to questions.

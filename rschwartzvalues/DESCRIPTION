@@ -2,7 +2,7 @@ Package: rschwartzvalues
 Type: Package
 Title: To conduct and visualise Schwartz values analyses.
 Version: 1.0
-Date: 2012-07-25
+Date: 2012-08-22
 Author: andy south
 Maintainer: andy south <southandy@gmail.com>
 Description: Functions to take repsonses to values survey questions, aggregate these into values sets, and display the results using rose,circumplex,coxcomb plots.
