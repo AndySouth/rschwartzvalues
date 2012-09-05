@@ -105,12 +105,12 @@ function( dF  #dataFrame
     
     #getting the lower labels upright
     label <- as.character(dF[[names]][sliceNum])
-    arctext2(label,center=c(fCentX,fCentY),radius=radius,stretch=1,cex=textSize,col=textCol,middle=middle,orient='upright')
+    #arctext2(label,center=c(fCentX,fCentY),radius=radius,stretch=1,cex=textSize,col=textCol,middle=middle,orient='upright')
     
     #if I was going to use updated arctext
-    #clockwise <- FALSE
-    #if (middle<pi) clockwise <- TRUE 
-    #arctext(iNames[sliceNum],center=c(fCentX,fCentY),radius=radius,stretch=1,cex=1.2,col='black',middle=middle,clockwise=clockwise)
+    clockwise <- FALSE
+    if (middle>pi) clockwise <- TRUE 
+    arctext2(iNames[sliceNum],center=c(fCentX,fCentY),radius=radius,stretch=1,cex=textSize,col=textCol,middle=middle,clockwise=clockwise)
     
   } #end of each slice in a circle
   

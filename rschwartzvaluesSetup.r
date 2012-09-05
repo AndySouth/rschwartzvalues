@@ -15,6 +15,14 @@ dFlookup57 <- read.csv('lookupTables//57QuestionsLookup.csv')
 #this is how to save to package later
 #save(dFlookup57, file="rschwartzvaluesWorkingCopy//rschwartzvalues//data//dFlookup57.rda")
 
+dFtestData21 <- read.csv("data//21QTestData6segments.csv")
+save(dFtestData21, file="rschwartzvaluesWorkingCopy//rschwartzvalues//data//dFtestData21.rda")
+prompt(dFtestData21)
+
+dFtestData57 <- read.csv("data//57QTestData6segments.csv")
+save(dFtestData57, file="rschwartzvaluesWorkingCopy//rschwartzvalues//data//dFtestData57.rda")
+prompt(dFtestData57)
+
 options(device="windows")
 
 #setting wd to initialSource
