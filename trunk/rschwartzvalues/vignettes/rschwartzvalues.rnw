@@ -33,7 +33,8 @@ par(mai=c(0.2,0,0.2,0)) #(b, l, t, r)
 %text that is put directly into the document
 \large{rschwartzvalues is a package for conducting Schwartz values analyses.
 This includes deriving 'Value sets' from responses to Schwartz values survey questions
-and creating plots like the one shown below (sometimes termed rose, coxcomb or circumplex).}\newline
+and creating plots like the one shown below (sometimes termed rose, coxcomb, circumplex
+or polar area plots).}\newline
 
 \begin{center}
 <<fig1,fig=TRUE,echo=FALSE,results=hide>>= 
@@ -70,11 +71,14 @@ library(rschwartzvalues)
 
 To analyse question responses you need to read your data in to a dataframe with
 columns specifying the question responses and a row for each individual. 
-Optionally you can provide a first column specifying groups or segments that
-individuals belong to.
+It is important that columns are in the same order as the question ordering 
+shown in the appendix. The names of the columns does not matter. 
+Optionally you can provide a first column specifying the segment or any other 
+group label.
 There is a dataframe included in the package ({\tt dFtestData21}) showing how the data should
 be formatted. The code below shows how the test data can be accessed and displays
-the first 14 columns using the {\tt xtable} package.
+the first 14 columns using the {\tt xtable} package. 
+(xtable is used just to format the table and is not essential for use of this package).
 
 \begin{center}
 <<fig=FALSE,echo=TRUE,results=tex>>= 
@@ -216,6 +220,24 @@ For more details about Schwartz values analysis see :
 If you have any questions or would like to contribute, please contact the author
 at southandy@gmail.com. 
 
+\section{Appendix : ordering of questions and contribution to value sets }
+It is important that question responses are ordered correctly within data files 
+prior to analyses. You can check on the order of the questions and the value sets 
+that they contribute to by accessing the lookup tables as shown below.
+\newline
+\large{21 questions} 
+<<fig=FALSE,echo=TRUE,results=tex>>= 
+library(xtable)
+data(dFlookup21)
+print(xtable(dFlookup21[,c(2,5)]),include.rownames=FALSE)
+@
 
+\large{57 questions}  
+<<fig=FALSE,echo=TRUE,results=tex>>= 
+library(xtable)
+data(dFlookup57)
+print(xtable(dFlookup57[,c(2,5)]),include.rownames=FALSE)
+@
 
+ 
 \end{document}

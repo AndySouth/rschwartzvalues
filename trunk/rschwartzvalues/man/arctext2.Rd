@@ -7,7 +7,7 @@ Enables text to be oriented clockwise or anticlockwise. Likely that this will be
 }
 \usage{
 arctext2(x, center = c(0, 0), radius = 1, start = NA, middle = pi/2, end = NA
-        , stretch = 1, orient = "clock", cex = NA, ...)
+        , stretch = 1, clockwise=FALSE, cex = NA, ...)
 }
 
 \arguments{
@@ -32,9 +32,7 @@ arctext2(x, center = c(0, 0), radius = 1, start = NA, middle = pi/2, end = NA
   \item{stretch}{
 %%     ~~Describe \code{stretch} here~~
 }
-  \item{orient}{
-%%     ~~Describe \code{orient} here~~
-}
+  \item{clockwise}{whether to orient text clockwise or anti-clockwise}
   \item{cex}{
 %%     ~~Describe \code{cex} here~~
 }
