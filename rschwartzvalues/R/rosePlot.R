@@ -79,8 +79,8 @@ function( dF  #dataFrame
     
     
     #P contains coordinates for the circumference bit of the slice in $x & $y
-    P <- list( x= sliceRadii[sliceNum] * cos(2*pi*seq(cumulatProps[sliceNum],cumulatProps[sliceNum+1],length=n,na.rm=TRUE))+ fCentX,
-               y= sliceRadii[sliceNum] * sin(2*pi*seq(cumulatProps[sliceNum],cumulatProps[sliceNum+1],length=n,na.rm=TRUE))+ fCentY )
+    P <- list( x= sliceRadii[sliceNum] * cos(2*pi*seq(cumulatProps[sliceNum],cumulatProps[sliceNum+1],length=n))+ fCentX,
+               y= sliceRadii[sliceNum] * sin(2*pi*seq(cumulatProps[sliceNum],cumulatProps[sliceNum+1],length=n))+ fCentY )
     
     
     #cat("slice coords", P,"\n")
