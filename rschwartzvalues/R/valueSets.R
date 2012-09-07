@@ -3,7 +3,8 @@ valueSets <-
 function( dFraw  #dataFrame or could be a text file 
                        , numQs = 21 #21 or 57 or later allow user to submit their own lookup table  
                        , centering = TRUE #whether to centre means by the mean of all per segment
-                       ) 
+                       , addToNeg =TRUE #whether to add 1 to all vals if the min is -1
+        ) 
 {
   
   #first get the lookup table
@@ -30,12 +31,21 @@ function( dFraw  #dataFrame or could be a text file
     dFtmp <- cbind('ID',dFraw)
     dFraw <- dFtmp    
   } else if(length(dFraw)!=(1+numQs))
-          warning("your input file needs to have one column per question and an optional identifier column\n numColumns=",length(dFraw)," numQs=",numQs)
+          warning("your input file needs to have one column per question and an optional identifier column\n numColumns=",length(dFraw)," numQs=",numQs," trying to procede anyway")
     
   #assume that the input data has 1 identifier column followed by 21 columns with answer to each question
   #respondents in rows
   #column1 has an identifier to subset data by
   #dFraw[index+1]
+ 
+  #check if data have negative elements
+  #original Schwarz scale was -1 to +9, convert this to 0 to 10
+  if ( addToNeg && min(dFraw[2:(numQs+1)],na.rm=TRUE) == -1 )
+  {
+    dFraw[2:(numQs+1)] <- dFraw[2:(numQs+1)] + 1
+    message("in valueSets() added one to all responses, to turn this off set addToNeg=FALSE")
+  }
+  
   
   #first calc the means for each segment for each question
   dFrawMeans <- aggregate(dFraw[2:(numQs+1)],by=dFraw[1], mean)

@@ -74,7 +74,7 @@ columns specifying the question responses and a row for each individual.
 It is important that columns are in the same order as the question ordering 
 shown in the appendix. The names of the columns does not matter. 
 Optionally you can provide a first column specifying the segment or any other 
-group label.
+group label. Larger positive responses will generate larger sectors in the plots. 
 There is a dataframe included in the package ({\tt dFtestData21}) showing how the data should
 be formatted. The code below shows how the test data can be accessed and displays
 the first 14 columns using the {\tt xtable} package. 
@@ -90,7 +90,7 @@ print(xtable(dFtestData21[1:14]),include.rownames=FALSE)
 \end{center}
 
 
-\section{Using valueSets() and rosePlot()}
+\section{Using valueSets() and rosePlot() for the 21 question survey}
 
 The code below shows how you can use {\tt valueSets()} to aggregate the raw responses
 into 'value sets' for each group producing results as a dataframe. 
@@ -127,7 +127,10 @@ print(dF,row.names=FALSE)
 
 {\tt rosePlot()} by default sets the outer circumference of the circle to the 
 maximum value from your data. You can set the value for the outer edge using
-the {\tt maxValue} argument as shown below.  
+the {\tt maxValue} argument as shown below. This allows comparison between 
+different datasets even if they have a different maximum. If you know the upper 
+end of your scale it is a good idea to set {\tt maxValue} to avoid potential 
+confusion.   
 \begin{center}
 <<fig3,fig=TRUE,echo=TRUE>>= 
 <<plotSetup>>
@@ -143,12 +146,37 @@ each group type :
 {\tt valueSetsPlots(dFtestData21,numQs=21)}
 
 
-\section{Modifying plot appearance}
+\section{For 57 question surveys}
+57 question Schwartz values surveys can be analysed and plotted by setting {\tt numQs=57}.
 
+\begin{center}
+<<fig57qs,fig=TRUE,echo=TRUE>>= 
+<<plotSetup>>
+#to access the test data provided in the package
+data(dFtestData57)
+#to calculate value sets
+dF <- valueSets(dFtestData57,numQs=57)
+print(dF,row.names=FALSE)
+#to produce a plot for one of the groups
+rosePlot(dF, names='setName', values='group1', textSize=0.7)
+@
+\end{center}
+
+\section{Input data on a scale of -1 to 9}
+If your data uses a scale with a minimum of -1, {\tt valueSets()} will
+automatically add 1 to all responses. This is because negative values do not show
+up in {\tt rosePlot()}. If you do not wish the 1 to be added you can set {\tt addToNeg=FALSE}
+in {\tt valueSets()}. 
+
+
+\section{Modifying plot appearance}
+% BEWARE ! the plots below use dF created in the previous
 A series of commands showing how the appearance of plots can be modified.
 \begin{center}
 <<figAppearance1,fig=TRUE,echo=TRUE,results=hide>>= 
 <<plotSetup>>
+#to calculate value sets
+dF <- valueSets(dFtestData21,centering=FALSE,numQs=21)
 rosePlot(dF, names='setName', values='group6', textSize=0.7
         , gridCol='grey', bgCol='grey', ringCol='red'
         , title="gridCol='grey',bgCol='grey',ringCol='red'")
@@ -201,7 +229,7 @@ rosePlot(dF, names='setName', values='group6', textSize=0.7
 
 You can also use {\tt rosePlot()} to create a plot from any combination of text labels
 and values passed as a dataframe. The code below shows how you can create a 
-dataframe containing labels and values and pass this to {\tt rosePlot()}.
+dataframe containing labels and values to pass to {\tt rosePlot()}.
 
 \begin{center}
 <<figRosePlot,fig=TRUE,echo=TRUE,results=hide>>= 

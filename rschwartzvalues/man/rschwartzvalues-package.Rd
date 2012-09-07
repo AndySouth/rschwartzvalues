@@ -30,14 +30,13 @@ Maintainer: southandy@gmail.com
 http://mypersonality.org/wiki/doku.php?id=schwartz_s_values_survey
 }
 \keyword{ package }
-\seealso{
 
-}
 \examples{
-labels <- (c('Hedonism','Stimulation','Self-Direction','Universalism','Benevolence'
-            ,'Conformity & Tradition','Security','Power','Achievement'))
-scores <- c(1,10,2,3,4,5,6,7,8)
-scores2 <- c(2,9,3,2,4,10,6,7,4)
-dF <- data.frame(labels=labels, scores=scores, scores2=scores2)
-rosePlotMulti(dF, names='labels', values=c(2,3))
+data(dFtestData21)
+#to get the numeric results 
+valueSets(dFtestData21)
+valueSets(dFtestData21, centering=FALSE)
+#to create plots for each segment
+valueSetsPlots(dFtestData21)
+valueSetsPlots(dFtestData21, centering=FALSE)
 }

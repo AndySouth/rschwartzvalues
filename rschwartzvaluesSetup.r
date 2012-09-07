@@ -23,6 +23,11 @@ dFtestData57 <- read.csv("data//57QTestData.csv")
 save(dFtestData57, file="rschwartzvaluesWorkingCopy//rschwartzvalues//data//dFtestData57.rda")
 prompt(dFtestData57)
 
+dFtestData57neg1to9 <- read.csv("data//57QTestDataMinus1to9.csv")
+save(dFtestData57neg1to9, file="rschwartzvaluesWorkingCopy//rschwartzvalues//data//dFtestData57neg1to9.rda")
+prompt(dFtestData57neg1to9)
+
+
 options(device="windows")
 
 #setting wd to initialSource

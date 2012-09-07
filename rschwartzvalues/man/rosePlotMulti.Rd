@@ -24,9 +24,6 @@ rosePlotMulti(dF, names, valuesColumns = c(3, 4), textSize = 0.3, ...)
 }
 
 
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 andy south
 }
@@ -39,7 +36,6 @@ scores2 <- c(2,9,3,2,4,10,6,7,4)
 dF <- data.frame(labels=labels, scores=scores, scores2=scores2)
 rosePlotMulti(dF, names='labels', values=c(2,3))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ aplot }
 

@@ -21,9 +21,7 @@ valueSetsPlots(dFraw, numQs = 21, centering = TRUE, ...)
   \item{\dots}{additional parameters to pass to \code{rosePlot()}
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 returns nothing.
 }
@@ -34,12 +32,11 @@ andy south
 
 
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
+data(dFtestData21)
+#to create plots for each segment
+valueSetsPlots(dFtestData21)
+valueSetsPlots(dFtestData21, centering=FALSE)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ aplot }
 
