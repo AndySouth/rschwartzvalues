@@ -19,9 +19,7 @@ part of the 2011 Welsh Assembly Government Sustainability Survey.
   }
 }
 
-\references{
-%%  ~~ possibly secondary sources and usages ~~
-}
+
 \examples{
 data(dFlookup21)
 dFlookup21

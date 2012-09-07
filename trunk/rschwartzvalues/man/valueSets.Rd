@@ -10,7 +10,7 @@ a reduced 21 question survey asked as a part of the 2011 Welsh Assembly Governme
 Each value set is calculated from a mean value of the responses to contributing questions (specified in the lookup tables).
 }
 \usage{
-valueSets(dFraw, numQs = 21, centering = TRUE)
+valueSets(dFraw, numQs = 21, centering = TRUE, addToNeg = TRUE)
 }
 
 \arguments{
@@ -24,10 +24,13 @@ valueSets(dFraw, numQs = 21, centering = TRUE)
 }
   \item{centering}{Whether or not to centre the value sets. Set to TRUE as default. 
 }
+  \item{addToNeg}{Whether to add 1 to all responses if the mimimum response is -1.
+  This will convert a scale of -1 to 9 to one of 0 to 10 which displays better in plots.
+  (negative numbers do not show up in rosePlot()) 
+  Set to TRUE as default. 
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
 }
+
 \value{
 Returns a dataframe containing the value sets which can then be plotted using \code{rosePlot()}
 }
@@ -39,12 +42,11 @@ andy south
 }
 
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
+data(dFtestData21)
+#to get the numeric results 
+valueSets(dFtestData21)
+valueSets(dFtestData21, centering=FALSE)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
+
+\keyword{ math }
 
