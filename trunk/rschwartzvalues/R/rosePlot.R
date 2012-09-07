@@ -110,7 +110,7 @@ function( dF  #dataFrame
     #if I was going to use updated arctext
     clockwise <- FALSE
     if (middle>pi) clockwise <- TRUE 
-    arctext2(iNames[sliceNum],center=c(fCentX,fCentY),radius=radius,stretch=1,cex=textSize,col=textCol,middle=middle,clockwise=clockwise)
+    arctext2(label,center=c(fCentX,fCentY),radius=radius,stretch=1,cex=textSize,col=textCol,middle=middle,clockwise=clockwise)
     
   } #end of each slice in a circle
   
