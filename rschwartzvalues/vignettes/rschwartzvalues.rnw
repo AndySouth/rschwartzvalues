@@ -107,6 +107,8 @@ dF <- valueSets(dFtestData21,numQs=21)
 print(dF,row.names=FALSE)
 #to produce a plot for one of the groups
 rosePlot(dF, names='setName', values='group6', textSize=0.7)
+#to output valueSets results to a csv
+#write.csv( dF, "valueSets.csv", row.names = F )
 @
 \end{center}
 
@@ -139,6 +141,8 @@ rosePlot(dF, names='setName', values='group6', textSize=0.7
 @
 \end{center}
 
+There are many options for saving plots to a file. From windows you can simply 
+type {\tt savePlot("myFile.pdf",type='pdf'))}.
 
 \section{Using valueSetsPlots() to produce quick plots for all groups in a file}
 To do a quick analysis of all the groups in your file producing one plot for 
