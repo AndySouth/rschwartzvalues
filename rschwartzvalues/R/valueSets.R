@@ -10,11 +10,11 @@ function( dFraw  #dataFrame or could be a text file
   #later offer the option to submit own lookup table
   #dFlookup21 <- read.csv('lookupTables//21QuestionsLookup.csv')
   if (numQs == 21) {
-    data(dFlookup21)
+    data("dFlookup21", envir = environment(),package = "rschwartzvalues")
     dFlookup <- dFlookup21
   }
   else if (numQs == 57)  {
-    data(dFlookup57)
+    data("dFlookup57", envir = environment(),package = "rschwartzvalues")
     dFlookup <- dFlookup57
   }
   else warning("numQs needs to be 21 or 57 later other options can be added")

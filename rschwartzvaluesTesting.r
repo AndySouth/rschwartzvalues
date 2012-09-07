@@ -96,5 +96,8 @@ valueSets(dFmyData,numQs=21,centering=FALSE) #works
 valueSetsPlots(dFmyData,numQs=21,maxValue=5,centering=FALSE) #works
 rosePlot(dF, names='setName', values='group5')
 
-
+#reading in WAG data in SPSS format
+library(foreign)
+#C:\rProjects\PircPlotJune2012\fromAndrewDarnton
+dFSPSS <- read.spss("fromAndrewDarnton//WAG sustainability survey SPSS FINAL.sav", to.data.frame=TRUE)
 

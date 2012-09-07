@@ -229,14 +229,14 @@ that they contribute to by accessing the lookup tables as shown below.
 <<fig=FALSE,echo=TRUE,results=tex>>= 
 library(xtable)
 data(dFlookup21)
-print(xtable(dFlookup21[,c(2,5)]),include.rownames=FALSE)
+print(xtable(dFlookup21[,c(1,2,5)]),include.rownames=FALSE)
 @
 
 \large{57 questions}  
 <<fig=FALSE,echo=TRUE,results=tex>>= 
 library(xtable)
 data(dFlookup57)
-print(xtable(dFlookup57[,c(2,5)]),include.rownames=FALSE)
+print(xtable(dFlookup57[,c(1,2,5)]),include.rownames=FALSE)
 @
 
  
