@@ -8,6 +8,8 @@ Calculates 'Value sets' from a larger number of question responses.
 Has default lookup tables to deal with 57 question Schwartz values survey and
 a reduced 21 question survey asked as a part of the 2011 Welsh Assembly Government Sustainability Survey.
 Each value set is calculated from a mean value of the responses to contributing questions (specified in the lookup tables).
+Questions not answered or 'I don't know' responses should be coded as NA in the input file
+, and will be excluded from the mean calculations.
 }
 \usage{
 valueSets(dFraw, numQs = 21, centering = TRUE, addToNeg = TRUE)
@@ -19,6 +21,8 @@ valueSets(dFraw, numQs = 21, centering = TRUE, addToNeg = TRUE)
   Columns must be in the correct order.
   (Will also work for a single group if there is no identifier column).
   1 row per respondent.
+  Questions not answered or 'I don't know' responses should be coded as NA in the input file
+  , and will be excluded from the mean calculations.
 }
   \item{numQs}{The number of questions asked in the survey, current options 57 or 21.
 }

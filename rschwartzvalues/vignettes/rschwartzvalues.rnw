@@ -75,10 +75,13 @@ It is important that columns are in the same order as the question ordering
 shown in the appendix. The names of the columns does not matter. 
 Optionally you can provide a first column specifying the segment or any other 
 group label. Larger positive responses will generate larger sectors in the plots. 
+Questions not answered or 'I don't know' responses should be coded as NA in the input file
+, and will be excluded from the mean calculations.
 There is a dataframe included in the package ({\tt dFtestData21}) showing how the data should
 be formatted. The code below shows how the test data can be accessed and displays
 the first 14 columns using the {\tt xtable} package. 
 (xtable is used just to format the table and is not essential for use of this package).
+
 
 \begin{center}
 <<fig=FALSE,echo=TRUE,results=tex>>= 
@@ -89,6 +92,8 @@ print(xtable(dFtestData21[1:14]),include.rownames=FALSE)
 @
 \end{center}
 
+%to get the table immediately after the code due to pagebreak
+\vspace{3 cm}
 
 \section{Using valueSets() and rosePlot() for the 21 question survey}
 

@@ -48,7 +48,8 @@ function( dFraw  #dataFrame or could be a text file
   
   
   #first calc the means for each segment for each question
-  dFrawMeans <- aggregate(dFraw[2:(numQs+1)],by=dFraw[1], mean)
+  #dFrawMeans <- aggregate(dFraw[2:(numQs+1)],by=dFraw[1], mean)
+  dFrawMeans <- aggregate(dFraw[2:(numQs+1)],by=dFraw[1], mean, na.rm = TRUE)  
   #set row names to the segment names
   row.names(dFrawMeans) <- dFrawMeans[,1]
   #remove the segment names column
@@ -82,8 +83,8 @@ function( dFraw  #dataFrame or could be a text file
   
   ############################
   # centering
-  meanTot <- mean( colMeans(dFraw[,-1]) ) # misses out first column containing names
-  meanPerSeg <- sapply( dFt,FUN=mean ) # dFt contains mean per Q per seg, this calcs mean of all Qs per seg
+  meanTot <- mean( colMeans(dFraw[,-1]),na.rm=TRUE ) # misses out first column containing names
+  meanPerSeg <- sapply( dFt,FUN=mean,na.rm=TRUE ) # dFt contains mean per Q per seg, this calcs mean of all Qs per seg
   meanDif <- meanPerSeg - meanTot
   
   #for each set calc the mean of the contributing questions
