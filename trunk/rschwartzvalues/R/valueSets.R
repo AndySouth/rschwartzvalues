@@ -1,9 +1,10 @@
 
 valueSets <-
-function( dFraw  #dataFrame or could be a text file 
-                       , numQs = 21 #21 or 57 or later allow user to submit their own lookup table  
-                       , centering = TRUE #whether to centre means by the mean of all per segment
-                       , addToNeg =TRUE #whether to add 1 to all vals if the min is -1
+function( dFraw  #dataFrame 
+          , numQs = 21 #21 or 57 or later allow user to submit their own lookup table  
+          , columns = NULL
+          , centering = TRUE #whether to centre means by the mean of all per segment
+          , addToNeg =TRUE #whether to add 1 to all vals if the min is -1
         ) 
 {
   
@@ -20,7 +21,15 @@ function( dFraw  #dataFrame or could be a text file
   }
   else warning("numQs needs to be 21 or 57 later other options can be added")
   
-  #dFraw <- read.csv("data//wag21testData.csv")
+
+  #allow columns to be subsetted from the input dataframe
+  #the first one will still be used as the identifier
+  if (length(columns)>1)
+  {
+    dFraw <- dFraw[,columns]
+  }
+  
+  
   
   #test whether the number of questions in the lookup table and the raw data is the same 
   
@@ -28,11 +37,12 @@ function( dFraw  #dataFrame or could be a text file
   if (length(dFraw)==numQs) 
   {
     message("adding an identifier column")
-    dFtmp <- cbind('ID',dFraw)
+    dFtmp <- cbind('ALL',dFraw)
     dFraw <- dFtmp    
   } else if(length(dFraw)!=(1+numQs))
           warning("your input file needs to have one column per question and an optional identifier column\n numColumns=",length(dFraw)," numQs=",numQs," trying to procede anyway")
-    
+  
+  
   #assume that the input data has 1 identifier column followed by 21 columns with answer to each question
   #respondents in rows
   #column1 has an identifier to subset data by

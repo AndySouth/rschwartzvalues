@@ -12,7 +12,7 @@ Questions not answered or 'I don't know' responses should be coded as NA in the 
 , and will be excluded from the mean calculations.
 }
 \usage{
-valueSets(dFraw, numQs = 21, centering = TRUE, addToNeg = TRUE)
+valueSets(dFraw, numQs = 21, columns = NULL, centering = TRUE, addToNeg = TRUE)
 }
 
 \arguments{
@@ -25,6 +25,12 @@ valueSets(dFraw, numQs = 21, centering = TRUE, addToNeg = TRUE)
   , and will be excluded from the mean calculations.
 }
   \item{numQs}{The number of questions asked in the survey, current options 57 or 21.
+}
+  \item{columns}{An optional argument to specify which columns to use from larger dataframe.
+  e.g. c(1:23) would use the first 23 columns. If you had a series of attribute columns before the responses, 
+	you could run subsequent analyses grouping the respondents by different attributes. 
+	So if you had attributes in the first 9 columns, you could specify columns=c(1,10:30) for a first analysis
+	and columns=c(2,10:30) to group by the 2nd column.  
 }
   \item{centering}{Whether or not to centre the value sets. Set to TRUE as default. 
 }
