@@ -15,6 +15,12 @@ function( dF  #dataFrame
                       , palette ='rainbow'#options a)vector of colours, b) 'rainbow', c) 'grey' 
                       ) {
   
+  #checking that the specified names and values columns exist in th data
+  if ( ! names %in% names(dFvs) ) 
+    stop("your names column(",names,") does not exist in your data : ", names(dFvs))
+  if ( ! values %in% names(dFvs) ) 
+    stop("your values column(",values,") does not exist in your data : ", names(dFvs))  
+  
   #set maxValue from data if not specified
   if (is.na(maxValue)) maxValue <- max(dF[[values]],na.rm=TRUE)
   
