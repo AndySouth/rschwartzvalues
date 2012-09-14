@@ -11,6 +11,7 @@ function( dFraw  #dataFrame
   #first get the lookup table
   #later offer the option to submit own lookup table
   #dFlookup21 <- read.csv('lookupTables//21QuestionsLookup.csv')
+  dFlookup21 <- dFlookup57 <- NULL #just to appease R CMD CHECK
   if (numQs == 21) {
     data("dFlookup21", envir = environment(),package = "rschwartzvalues")
     dFlookup <- dFlookup21
@@ -123,5 +124,14 @@ function( dFraw  #dataFrame
     #dFout[setNum,names(dFt)] <- results    
   }
   
-  return(dFout)  
+  #reorder the output
+  #has to be thought of anticlockwise
+  #want the reverse of : un,be,co&tr,se,po,ac,he,st,sd
+  #is : 1un,2be,3po,4ac,5he,6st,7sd,8co,9se,10tr
+  
+  #so i think
+  dFout2 <- dFout[c(7,6,5,4,3,9,10,8,2,1),]
+  
+  
+  return(dFout2)  
 }
