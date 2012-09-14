@@ -16,10 +16,10 @@ function( dF  #dataFrame
                       ) {
   
   #checking that the specified names and values columns exist in th data
-  if ( ! names %in% names(dFvs) ) 
-    stop("your names column(",names,") does not exist in your data : ", names(dFvs))
-  if ( ! values %in% names(dFvs) ) 
-    stop("your values column(",values,") does not exist in your data : ", names(dFvs))  
+  if ( ! names %in% names(dF) ) 
+    stop("your names column(",names,") does not exist in your data : ", names(dF))
+  if ( ! values %in% names(dF) ) 
+    stop("your values column(",values,") does not exist in your data : ", names(dF))  
   
   #set maxValue from data if not specified
   if (is.na(maxValue)) maxValue <- max(dF[[values]],na.rm=TRUE)
@@ -72,21 +72,32 @@ function( dF  #dataFrame
   #angle of each slice is equal
   sliceProp <- 1 / numValues
   cumulatProps <- seq(0,1,sliceProp)
+  #reversing to try to get them to go clockwise
+  #cumulatProps <- seq(1,0,-sliceProp)  
+  #also I want them to start at 12 oclock rather than 3 
+  #so think I need to subtract 0.25
+  #causes problems !
+  #QcumulatProps <- (cumulatProps+.25) %% 1
   
   #as a first test set the radii to iValues
   sliceRadii <- dF[[values]]
+  #reversing to go clockwise
+  #sliceRadii <- rev(dF[[values]])  
   
   #for each slice
   for ( sliceNum in 1:length(sliceRadii) ) {
+  #reversing to try to get them to go clockwise
+  #for ( sliceNum in length(sliceRadii):1 ) {
     
     #number of points on the circumference of each slice
     #set to the proportion * 360
     n <- sliceProp * 360
-    
+    #n <- sliceProp * 10    
     
     #P contains coordinates for the circumference bit of the slice in $x & $y
-    P <- list( x= sliceRadii[sliceNum] * cos(2*pi*seq(cumulatProps[sliceNum],cumulatProps[sliceNum+1],length=n))+ fCentX,
-               y= sliceRadii[sliceNum] * sin(2*pi*seq(cumulatProps[sliceNum],cumulatProps[sliceNum+1],length=n))+ fCentY )
+    #pi/2+ added to start at 12 o'clock
+    P <- list( x= sliceRadii[sliceNum] * cos(pi/2+2*pi*seq(cumulatProps[sliceNum],cumulatProps[sliceNum+1],length=n))+ fCentX,
+               y= sliceRadii[sliceNum] * sin(pi/2+2*pi*seq(cumulatProps[sliceNum],cumulatProps[sliceNum+1],length=n))+ fCentY )
     
     
     #cat("slice coords", P,"\n")
@@ -103,19 +114,19 @@ function( dF  #dataFrame
     numIntervals <- length(gridIntervals)
     symbols(x=rep(fCentX,numIntervals),y=rep(fCentY,numIntervals),circles=gridIntervals,bg=NA,fg=gridCol,lwd=gridThick,add=TRUE,inches=FALSE)
     
-    #add the text for the name
-    middle <- 2 * pi * (cumulatProps[sliceNum] + sliceProp/2)
+    #add the text for the name, pi/2+ added to start at 12 o'clock
+    #middle <- pi/2+2*pi * (cumulatProps[sliceNum] + sliceProp/2)
+    middle <- (pi/2+2*pi * (cumulatProps[sliceNum] + sliceProp/2)) %% (2*pi)   
     #radius <- fMaxRadius + ringWidth
     radius <- fMaxRadius + 0.5 * (fCircleOuter-fMaxRadius)
     #arctext(iNames[sliceNum],center=c(fCentX,fCentY),radius=radius,stretch=1,cex=1.2,col='black',middle=middle)
     
     #getting the lower labels upright
     label <- as.character(dF[[names]][sliceNum])
-    #arctext2(label,center=c(fCentX,fCentY),radius=radius,stretch=1,cex=textSize,col=textCol,middle=middle,orient='upright')
-    
+    #arctext2(label,center=c(fCentX,fCentY),radius=radius,stretch=1,cex=textSize,col=textCol,middle=middle,orient='upright')   
     #if I was going to use updated arctext
-    clockwise <- FALSE
-    if (middle>pi) clockwise <- TRUE 
+    clockwise <- TRUE
+    if (middle>pi) clockwise <- FALSE 
     arctext2(label,center=c(fCentX,fCentY),radius=radius,stretch=1,cex=textSize,col=textCol,middle=middle,clockwise=clockwise)
     
   } #end of each slice in a circle

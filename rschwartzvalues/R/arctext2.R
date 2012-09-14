@@ -2,6 +2,8 @@
 arctext2<-function(x,center=c(0,0),radius=1,start=NA,middle=pi/2,end=NA,stretch=1,
  clockwise=FALSE,cex=NA, ...) {
 
+ clockwise <- ! clockwise #to correct jim getting it wrong way around  
+  
  oldcex <- par("cex")
  # have to do this to get strwidth to work
  if(is.na(cex)) cex <- oldcex
