@@ -76,10 +76,16 @@ library(rschwartzvalues)
 To analyse question responses you need to read your data in to a dataframe with
 columns specifying the question responses and a row for each individual. 
 It is important that columns are in the same order as the question ordering 
-shown in the appendix. The names of the columns does not matter. 
+shown in the appendix. The names of the columns do not matter. 
 Optionally you can provide a first column specifying the segment or any other 
-group label. Larger positive responses will generate larger sectors in the plots. 
-Questions not answered or 'I don't know' responses should be coded as NA in the input file
+group label.\newline 
+
+Larger positive responses will generate larger sectors in the plots. 
+Because of this you should ensure that your data are coded with increasing values for 
+increasing preference, e.g. from 0 for 'not important' to 5 for 'extremely important'.\newline
+
+
+Questions not answered, missing data or 'I don't know' responses should be coded as NA in the input file
 , and will be excluded from the mean calculations.
 There is a dataframe included in the package ({\tt dFtestData21}) showing how the data should
 be formatted. The code below shows how the test data can be accessed and displays
@@ -229,6 +235,9 @@ rosePlot(dF, names='setName', values='group6', textSize=0.7
 @
 \end{center}
 
+
+The interval bewteen the circular gridlines is set to 1 by default, you can change this
+using the gridInterval parameter.
 \begin{center}
 <<figAppearance6,fig=TRUE,echo=TRUE,results=hide>>= 
 <<plotSetup>>
@@ -255,10 +264,12 @@ rosePlot(dF, names='names', values='values')
 \end{center}
 
 \section{Further information}
+For further information on work on values and sustainability contact Richard Hawkins rich@pirc.info.
+For work on values in the context of the welsh government contact Andrew Darnton ad@andrewdarnton.co.uk.
 For more details about Schwartz values analysis see :
 \newline
 {\tt http://mypersonality.org/wiki/doku.php?id=schwartz\_s\_values\_survey} \newline
-If you have any questions or would like to contribute, please contact the author
+If you have any technical questions or would like to contribute, please contact the author
 at southandy@gmail.com. 
 
 \section{Appendix : ordering of questions and contribution to value sets }

@@ -6,7 +6,7 @@ function( dF  #dataFrame
                            , ... #additional parameters to pass to rosePlot()   
                            )
 {
-  oldPar <-par() #save previous graphics settings
+  oldPar <-par(no.readonly = TRUE) #save previous graphics settings, only the ones that can be set
 
   #RStudioGD doesn't allow multiple windows so changing it
   if ( options('device')=="RStudioGD" ) options(device="windows")  
@@ -31,6 +31,6 @@ function( dF  #dataFrame
     
   } 
   
-  
+  #re-setting graphics settings to what they were
   par(oldPar)
 }
