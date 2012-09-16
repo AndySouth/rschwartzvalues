@@ -129,7 +129,7 @@ function( dFraw  #dataFrame
   #want the reverse of : un,be,co&tr,se,po,ac,he,st,sd
   #is : 1un,2be,3po,4ac,5he,6st,7sd,8co,9se,10tr
   
-  #so i think
+  #re-ordering the rows
   dFout2 <- dFout[c(7,6,5,4,3,9,10,8,2,1),]
   
   

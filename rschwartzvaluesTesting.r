@@ -66,6 +66,7 @@ par(oldPar)
 
 #checking analysis of raw data
 dFraw <- read.csv("data//wag21testData.csv")
+dFraw <- read.csv("data//wag21testDataNAs.csv")
 dFraw <- read.csv("data//wag21testData1segment.csv")
 dFraw <- read.csv("data//wag21testData1segment2indivs.csv")
 dFraw <- read.csv("data//wag21testData1segmentnoID.csv")
@@ -101,3 +102,9 @@ library(foreign)
 #C:\rProjects\PircPlotJune2012\fromAndrewDarnton
 dFSPSS <- read.spss("fromAndrewDarnton//WAG sustainability survey SPSS FINAL.sav", to.data.frame=TRUE)
 
+#testing abundance of NAs
+dFmyData  <- read.csv("data//wag21testDataNAs.csv")
+dF <- valueSets(dFmyData,numQs=21) #generates -ve values
+
+
+rosePlot(dF,names='setName',values='audience1',textSize=0.5)
