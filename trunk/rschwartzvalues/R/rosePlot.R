@@ -79,7 +79,7 @@ function( dF  #dataFrame
   #causes problems !
   #QcumulatProps <- (cumulatProps+.25) %% 1
   
-  #as a first test set the radii to iValues
+  #set the radii
   sliceRadii <- dF[[values]]
   #reversing to go clockwise
   #sliceRadii <- rev(dF[[values]])  
