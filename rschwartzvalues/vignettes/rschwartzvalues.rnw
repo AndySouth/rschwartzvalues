@@ -4,6 +4,7 @@
 \author{Andy South\footnote{{\tt southandy at gmail.com}}}
 
 %\VignetteIndexEntry{rschwartzvalues vignette : examples to get started}
+%\VignetteDepends{xtable}
 
 \SweaveOpts{echo=TRUE,print=FALSE, width=7, height=3.7, eps=FALSE} %default width and height for figures
 \usepackage{Sweave}
