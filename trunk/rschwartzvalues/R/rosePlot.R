@@ -13,7 +13,8 @@ function( dF  #dataFrame
                       , gridThick = 1  #thickness of gridLines
                       , title = NA #just a quick & easy title at top
                       , palette ='rainbow'#options a)vector of colours, b) 'rainbow', c) 'grey' 
-                      ) {
+                      , symbolScaling = 'radius' #other option 'area' either radius or area of wedges set to values
+          ) {
   
   #checking that the specified names and values columns exist in th data
   if ( ! names %in% names(dF) ) 
@@ -36,8 +37,17 @@ function( dF  #dataFrame
     warning("In rosePlot(), your data has negative values these will not appear in plots, your min value is ",minValue)
   }  
   
+  
   fMaxRadius <- maxValue #can also have option to set from the max in the data
-  #fMaxWindow <- fMaxRadius + 1 #this +1 is lazy
+                         #BEWARE maxValue stillused to set gridIntervals later
+
+  #area : try just setting maxRadius to maxValue squared
+  if ( any(grep(symbolScaling, "area", ignore.case=TRUE)) )
+  {
+    fMaxRadius <- sqrt(maxValue) #can also have option to set from the max in the data
+    cat("using area symbolScaling \n")
+  }
+  
   fMaxWindow <- fMaxRadius + ringWidth*fMaxRadius/10 #10% boundary to include the ring
   fCircleOuter <- fMaxWindow + ringWidth*fMaxRadius/10 #still had to set outer circle bigger
   
@@ -81,6 +91,11 @@ function( dF  #dataFrame
   
   #set the radii
   sliceRadii <- dF[[values]]
+  #area : i think just set the radii to sqrt
+  if ( any(grep(symbolScaling, "area", ignore.case=TRUE)) )
+    sliceRadii <- sqrt(sliceRadii)  
+  
+  
   #reversing to go clockwise
   #sliceRadii <- rev(dF[[values]])  
   
@@ -108,9 +123,18 @@ function( dF  #dataFrame
     #testing adding an outline for comparisons
     #polygon(c(P$x,fCentX),c(P$y,fCentY),col=NA,border='black')#
     
+    
     #add concentric circular gridlines
     #this can be put above and could be set by the user
-    gridIntervals <- seq(from=0,to=fMaxRadius,by=gridInterval)
+    #!BEWARE area stuff here a little tricky 
+
+    #this has to use maxValue to create the unrroted intervals before rooting them
+    gridIntervals <- seq(from=0,to=maxValue,by=gridInterval)
+    
+    #area : sqrt grid intervals    
+    if ( any(grep(symbolScaling, "area", ignore.case=TRUE)) )
+        gridIntervals <- sqrt(gridIntervals)
+    
     numIntervals <- length(gridIntervals)
     symbols(x=rep(fCentX,numIntervals),y=rep(fCentY,numIntervals),circles=gridIntervals,bg=NA,fg=gridCol,lwd=gridThick,add=TRUE,inches=FALSE)
     
