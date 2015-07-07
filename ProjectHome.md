@@ -1,0 +1,1 @@
+Functions to derive value sets from responses to Schwartz values survey and to create plots (sometimes termed rose, coxcomb or circumplex) to display results.
